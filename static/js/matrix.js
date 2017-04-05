@@ -1,45 +1,6 @@
+var rows;
+var columns;
 
-{% extends "base.html" %}
-
-{% block content %}
-
-
-               <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            {{ page_name }}<small>{{ section }}</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-home"></i> Orthogonal Projection Matrix Calculator
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-
-
-<form>
-<input type="text"  id ="val_m"></input>
-<input type="text"  id ="val_n"></input>
-</form>
-
-<button id="set">set matrix size</button>
-
-<form id="frm"></form>
-
-
-
-
-<form action="/orthproj/" method="post" id="mat_vals">
-{% csrf_token %}
-{{ form }}
- <input id="get" type="submit" value="Submit" />
-</form>
-
-
-<script>
-var rows = 0;
-var columns = 0;
 
 
 $("#get").click(function(){
@@ -98,30 +59,3 @@ function getMatrix(){
     return matrix_row;
 }
 
-
-
-</script>
-
-
-
-
-
-<table>
-    {% for row in table %}
-        <tr>
-        {% for out in row %}
-            {% if forloop.first or forloop.parentloop.first %} <th> {% else %} <td> {% endif %}
-                {{ out }}
-            {% if forloop.first or forloop.parentloop.first %} </th> {% else %} </td> {% endif %}
-        {% endfor %}
-        </tr>
-    {% endfor %}
-</table>
-
-
-
-
-
-  
-
-{% endblock content %}

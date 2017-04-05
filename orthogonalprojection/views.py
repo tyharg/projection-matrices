@@ -6,20 +6,20 @@ from .forms import numberForm
 
 import numpy as np
 import fractions
-import djfractions
 
-
+page_name = 'Orthogonal Projection Matrix Calculator'
+section = 'Linear Algebra'
 
 
 	
 
 def get_digits(request):
-	out = None
-	# if this is a POST request we need to process the form data
+
+
 	if request.method == 'POST':
-		# create a form instance and populate it with data from the request:
+
 		form = numberForm(request.POST)
-		# check whether it's valid:
+
 		if form.is_valid():
 
 			
@@ -51,7 +51,7 @@ def get_digits(request):
 			out = AAtAIAt.tolist()
 			
 			np.set_printoptions(formatter={'all':lambda x: str(fractions.Fraction(x).limit_denominator())})
-			print(out)
+			print(AAtAIAt)
 			
 			row = int(m)
 			
@@ -61,7 +61,9 @@ def get_digits(request):
 			'num_array': num_array,
 			'out': out,
 			'row': row,
-			'table': AAtAIAt
+			'table': AAtAIAt,
+			'page_name': page_name,
+			'section': section,
 			
 			})
 			
@@ -69,4 +71,13 @@ def get_digits(request):
 	else:
 		form = numberForm()
 
-		return render(request, 'orthproj.html', {'form': form})
+		return render(request, 'orthproj.html', {
+		'page_name': page_name,
+		'section': section,
+		'form': form,
+		
+		
+
+		
+		
+		})

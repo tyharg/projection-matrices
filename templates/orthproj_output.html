@@ -1,0 +1,83 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#drop1"><i class="fa fa-fw fa-wrench"></i> Projects <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="drop1" class="collapse">
+                                                <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#drop2"><i class="fa fa-fw fa-arrows"></i> Linear Algebra <i class="fa fa-fw fa-caret-down"></i></a>
+						<li>
+                        <ul id="drop2" class="collapse" >
+                            
+                                <a href="#" class="projectlist">Orthogonal Projection Matrix Calculator</a>
+                            
+							
+			
+                        </ul>
+						</li>
+                    </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://github.com/tyharg" target="_blank"><i class="fa fa-fw fa-code-fork"></i> Github</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+
+               <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            {{ page_name }}<small>{{ section }}</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-angle-right"></i> Orthogonal Projection Matrix Calculator
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+
+
+
+{% if valid_output == True %}
+<table>
+    {% for row in table %}
+        <tr>
+        {% for out in row %}
+            {% if forloop.first or forloop.parentloop.first %} <th> {% else %} <td> {% endif %}
+                {{ out }}
+            {% if forloop.first or forloop.parentloop.first %} </th> {% else %} </td> {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+{{ out }}
+{% endif %}
+
+
+
+
+  
+
+{% endblock content %}

@@ -3,6 +3,44 @@
 
 {% block content %}
 
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#drop1"><i class="fa fa-fw fa-wrench"></i> Projects <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="drop1" class="collapse">
+                                                <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#drop2"><i class="fa fa-fw fa-arrows"></i> Linear Algebra <i class="fa fa-fw fa-caret-down"></i></a>
+						<li>
+                        <ul id="drop2" class="collapse" >
+                            
+                                <a href="#" class="projectlist">Orthogonal Projection Matrix Calculator</a>
+                            
+							
+			
+                        </ul>
+						</li>
+                    </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://github.com/tyharg" target="_blank"><i class="fa fa-fw fa-code-fork"></i> Github</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
 
                <div class="row">
                     <div class="col-lg-12">
@@ -11,31 +49,82 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-home"></i> Orthogonal Projection Matrix Calculator
+                               <i class="fa fa-angle-right" aria-hidden="true"></i> Orthogonal Projection Matrix Calculator
                             </li>
                         </ol>
                     </div>
                 </div>
 
 
-<form>
-<input type="text"  id ="val_m"></input>
-<input type="text"  id ="val_n"></input>
-</form>
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
+					
+					<div class="col-lg-2">
+					<span>Rows: </span>
+					<select name='Rows' class="form-control" id ="val_m">
+						<option title='mn1' value='1'>1</option>
+						<option title='mn2' value='2'>2</option>
+						<option title='mn3' value='3'>3</option>
+						<option title='mn4' value='4'>4</option>
+						<option title='mn5' value='5'>5</option>
+						<option title='mn6' value='6'>6</option>
+					</select>
+					</div>
+					
+					
+					<div class="col-lg-2">
+					<span>Columns: </span>
+					<select name='Columns' class="form-control"  id ="val_n">
+						<option title='mn1' value='1'>1</option>
+						<option title='mn2' value='2'>2</option>
+						<option title='mn3' value='3'>3</option>
+						<option title='mn4' value='4'>4</option>
+						<option title='mn5' value='5'>5</option>
+						<option title='mn6' value='6'>6</option>
+					</select>
+					
+					</div>
+					
+					<div class="col-lg-3">
+						<button id="set" class="btn-primary">Set Matrix</button>
+					</div>
+					
+					</div>
+					
+                </div>
 
-<button id="set">set matrix size</button>
 
-<form id="frm"></form>
+</br>
+
+<div class="row">
+
+<div class="col-lg-3"></div>
+
+
+
+<div class="col-lg-6">
+<form id="matrix_input"></form>
+</div>
 
 
 
 
-<form action="/orthproj/" method="post" id="mat_vals">
+
+
+
+
+
+
+<div class="col-lg-6 col-lg-offset-3">
+<form action="output/" method="post" id="mat_vals">
 {% csrf_token %}
+<div class="hide_serializer">
 {{ form }}
- <input id="get" type="submit" value="Submit" />
+</div>
+</br>
+ <input id="get" class="btn-primary" type="submit" value="Submit" />
 </form>
-
+</div>
 
 <script>
 var rows = 0;
@@ -57,9 +146,13 @@ $("#get").click(function(){
 $("#set").click(function(){
     var rows = document.getElementById("val_m").value;
 	var columns = document.getElementById("val_n").value;
+	var form = document.getElementById("matrix_input");
 	
+	while (form.firstChild) {
+    form.removeChild(form.firstChild);
+	}
 	
-	var form = document.getElementById("frm");
+
 
 	for(var i = 0; i < rows; i++)
             {
@@ -68,7 +161,7 @@ $("#set").click(function(){
                     var input = $('<input>')
                         .attr({
                             class: 'matrix_cell',
-                            value: i + j});
+                            });
                     form.appendChild(input[0]);
                 }
                 var br = $('<br>')[0];
@@ -82,7 +175,7 @@ function getMatrix(){
 
     var ind = 0;
     
-    $("#frm").contents().each(function(i,e){
+    $("#matrix_input").contents().each(function(i,e){
         if (this.nodeName == "INPUT")
         {
             if (!matrix_row[ind]){

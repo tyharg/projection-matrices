@@ -7,6 +7,7 @@ from .forms import numberForm
 import numpy as np
 import fractions
 
+np.set_printoptions(formatter={'all':lambda x: str(fractions.Fraction(x).limit_denominator())})
 
 page_name = 'Orthogonal Projection Matrix Calculator '
 section = ' - Linear Algebra'
@@ -43,21 +44,44 @@ def get_digits(request):
 				AAtAI = np.matmul(A, AtAi)
 				AAtAIAt = np.matmul(AAtAI, At)
 				
-				out = AAtAIAt.tolist()
+				P = AAtAIAt
+				P_rows = P.shape[0]
+				P_cols = P.shape[1]
 				
-				np.set_printoptions(formatter={'all':lambda x: str(fractions.Fraction(x).limit_denominator())})
+				
+
+				
+				P_list = [None]*(P_rows * P_cols)
+				P_numr = [None]*(P_rows * P_cols)
+				P_dnmr = [None]*(P_rows * P_cols)
+
+
+				counter = 0
+				for i in range(P_rows):
+					for j in range(P_cols):
+						P_list[counter] = (fractions.Fraction(P[i,j]).limit_denominator())
+						P_numr[counter] = P_list[counter].numerator
+						P_dnmr[counter] = P_list[counter].denominator
+						counter += 1
+						
+				P_list = None
+				
+				P_zip = zip(P_numr, P_dnmr) 
+
+
 				print(AAtAIAt)
-				
-				row = int(m)
+
 				
 				valid_output = True
 				
 				
 				return render(request, 'orthproj_output.html', {
-				'num_array': num_array,
-				'out': out,
-				'row': row,
-				'table': AAtAIAt,
+				'P_rows': P_rows,
+				'P_cols': P_cols,
+				'P_numr': P_numr,
+				'P_dnmr': P_dnmr,
+				'P_zip': P_zip,
+				'table': P,
 				'page_name': page_name,
 				'section': section,
 				'valid_output': valid_output,
@@ -66,20 +90,25 @@ def get_digits(request):
 				
 			except:
 				valid_output = False
-				out = 'Something went wrong'
+				out = ' Perhaps your matrix is linearly dependent?'
 
 				return render(request, 'orthproj_output.html', {
+				'page_name': page_name,
+				'section': section,
 				'out': out,
 				'valid_output': valid_output,
 				})
 				
 		else:
 			valid_output = False
-			out = 'Something went wrong'
+			out = ' Check your matrix input values.'
+			
 			return render(request, 'orthproj_output.html', {
-			'out': out,
-			'valid_output': valid_output,
-			})
+				'page_name': page_name,
+				'section': section,
+				'out': out,
+				'valid_output': valid_output,
+				})
 			
 			
 	else:

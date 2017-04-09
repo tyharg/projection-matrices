@@ -18,7 +18,7 @@
 						<li>
                         <ul id="drop2" class="collapse" >
                             
-                                <a href="#" class="projectlist">Orthogonal Projection Matrix Calculator</a>
+                                <a href="#" class="projectlist">    Orthogonal Projection Matrix Calculator</a>
                             
 							
 			
@@ -57,7 +57,7 @@
 
 
 			<div class="row">
-				<div class="col-lg-6 col-lg-offset-3">
+				<div class="col-lg-12">
 					
 					<div class="col-lg-2">
 					<span>Rows: </span>
@@ -98,7 +98,7 @@
 
 <div class="row">
 
-<div class="col-lg-3"></div>
+
 
 
 
@@ -106,6 +106,7 @@
 <form id="matrix_input"></form>
 </div>
 
+</div>
 
 
 
@@ -115,20 +116,24 @@
 
 
 
-<div class="col-lg-6 col-lg-offset-3">
+<div class="col-lg-12">
 <form action="output/" method="post" id="mat_vals">
 {% csrf_token %}
 <div class="hide_serializer">
 {{ form }}
 </div>
 </br>
- <input id="get" class="btn-primary" type="submit" value="Submit" />
+ <input id="get" class="btn-primary" type="submit" value="Calculate" />
 </form>
 </div>
 
 <script>
 var rows = 0;
 var columns = 0;
+
+	document.getElementById("id_numbers").value = '';
+	document.getElementById("id_rows").value = '';
+	document.getElementById("id_cols").value = '';
 
 
 $("#get").click(function(){

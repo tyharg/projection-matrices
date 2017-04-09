@@ -18,7 +18,7 @@
 						<li>
                         <ul id="drop2" class="collapse" >
                             
-                                <a href="#" class="projectlist">Orthogonal Projection Matrix Calculator</a>
+                                <a href="#" class="projectlist">   Orthogonal Projection Matrix Calculator</a>
                             
 							
 			
@@ -49,7 +49,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-angle-right"></i> Orthogonal Projection Matrix Calculator
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>   Orthogonal Projection Matrix Calculator
                             </li>
                         </ol>
                     </div>
@@ -58,22 +58,58 @@
 
 
 
+				<div class="row">
+				<div class="col-lg-2">
 {% if valid_output == True %}
-<table>
-    {% for row in table %}
-        <tr>
-        {% for out in row %}
-            {% if forloop.first or forloop.parentloop.first %} <th> {% else %} <td> {% endif %}
-                {{ out }}
-            {% if forloop.first or forloop.parentloop.first %} </th> {% else %} </td> {% endif %}
-        {% endfor %}
-        </tr>
+
+
+
+<table class="table table-bordered"><tr>
+    {% for i, j in P_zip %}
+		<td class="table_cell">
+		
+			{% if j != 1 %}
+			<sup>{{ i }}</sup>  /   <sub>{{ j }}</sub>
+			{% else %}
+			{{ i }}
+			{% endif %}
+		
+		
+		</td>
+			{% if forloop.last %}
+				</tr>
+			{% else %}
+		
+		
+				{% if forloop.counter|divisibleby:P_cols and forloop.counter != 1 %}
+				</tr><tr>
+				{% endif %}
+			
+			{% endif %}
+		
+		
     {% endfor %}
 </table>
 
+</div>
+
+
+
+
 {% else %}
-{{ out }}
+<div class="alert alert-warning">
+	<strong>Something went wrong: </strong>{{ out }}
+</div>
+
+
 {% endif %}
+
+</br>
+<form action="/orthproj/">
+    <input type="submit" value="Reset" class="btn-danger" id="reset"/>
+</form>
+</div>
+</div>
 
 
 

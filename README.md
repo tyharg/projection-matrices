@@ -1,5 +1,5 @@
 # projection-matrices
 
-Dependent on Django + Numpy
+Dependent on Django + Numpy;
 
-Uses SB-Admin bootstrap theme.
+templates use SB-Admin Bootstrap theme.

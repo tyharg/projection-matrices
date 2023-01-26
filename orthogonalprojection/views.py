@@ -68,17 +68,17 @@ def get_digits(request):
 				valid_output = True
 				print(P)
 				return render(request, 'orthproj_output.html', {
-				'P_rows': P_rows,
-				'P_cols': P_cols,
-				'P_numr': P_numr,
-				'P_dnmr': P_dnmr,
-				'P_zip': P_zip,
-				'table': P,
-				'page_name': page_name,
-				'section': section,
-				'valid_output': valid_output,
-				})
-				
+					'P_rows': P_rows,
+					'P_cols': P_cols,
+					'P_numr': P_numr,
+					'P_dnmr': P_dnmr,
+					'P_zip': P_zip,
+					'table': P,
+					'page_name': page_name,
+					'section': section,
+					'valid_output': valid_output,
+					})
+
 			#Invalid output response: something went wrong within the calculation
 			except:
 				out = ' Perhaps your matrix rows are linearly dependent?'

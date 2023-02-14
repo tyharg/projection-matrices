@@ -6,4 +6,4 @@ templates use SB-Admin Bootstrap theme.
 
 # Demo:
 
-http://www.tyharg.com/linear-algebra/orthogonal-projection-matrix/
+https://home-tyharg.herokuapp.com/linear-algebra/orthogonal-projection-matrix/

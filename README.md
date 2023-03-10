@@ -5,7 +5,7 @@ Dependent on Django + Numpy;
 templates use SB-Admin Bootstrap theme.
 
 # Setup
-Working on adding a one-click heroku deploy, I think this repo is missing a few files because the deployment has private files in it.
+Working on adding a one-click heroku deploy, I think this repo is missing a few files because the actual site deployment has private files in it.
 
 # Demo:
 
